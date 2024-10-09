@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #c9fcdd;
+}
+* {
+  scrollbar-gutter: stable;
+  scrollbar-3dlight-color: blue;
+  scrollbar-arrow-color: aqua;
+  scrollbar-width: thin;
+  scrollbar-color: #49df99 #ffffff;
+}
+*::selection {
+  background-color: #49df99;
+  color: #ffffff;
+}
+*::-webkit-scrollbar {
+  width: 20px;
+}
+*::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+*::-webkit-scrollbar-thumb {
+  background-color: #49df99;
+  border-radius: 24px;
+  border: 2px inset #49df99;
+}
+.scroll-button {
+  transform: translateY(100%);
+}
+.scroll-button.show {
+  transform: translateY(0);
+}
+select option {
+  margin: 40px;
+  background: #83fcb1;
+  color: hsl(0, 0%, 100%);
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+  border: none;
+}
+select:focus > option:checked {
+  background: #00f888 !important;
+}
+select:focus > option:hover {
+  background: #00f888 !important;
+}
