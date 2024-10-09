@@ -184,7 +184,7 @@ provide('totalPrice', totalPrice)
   >
     <img src="/arrow-next.svg" class="mx-auto -rotate-90" alt="Up" />
   </button>
-  <div class="w-4/5 mx-auto bg-white rounded-2xl shadow-2xl mt-10 pb-1 mb-12">
+  <div class="w-4/5 max-[450px]:w-[190vw] mx-auto bg-white rounded-2xl shadow-2xl mt-10 pb-1 mb-12">
     <Header @handle-drawer="handleDrawer" :totalPrice="totalPrice" />
 
     <div class="p-10">
