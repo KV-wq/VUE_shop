@@ -21,7 +21,7 @@ const props = defineProps({
       alt="Like"
       class="absolute top-8 left-8 cursor-pointer"
     />
-    <img :src="img" alt="Sneakers" class="min-[1900px]:w-[27rem] min-[1900px]:h-[25rem]" />
+    <img :src="img" alt="Sneakers" class="min-[1900px]:w-[27rem] min-[1900px]:max-h-[25rem]" />
     <p class="mt-2 text-xs sm:text-lg">{{ title }}</p>
     <div class="flex justify-between mt-5">
       <div class="flex flex-col">

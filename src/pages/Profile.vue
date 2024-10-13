@@ -6,7 +6,7 @@ const orders = ref([])
 
 onMounted(async () => {
   const { data } = await axios.get('https://e5e2fa5636b51605.mokky.dev/orders')
-  orders.value = data
+  orders.value = data.reverse()
 })
 </script>
 <template>
