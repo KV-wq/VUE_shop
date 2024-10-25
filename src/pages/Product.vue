@@ -1,6 +1,6 @@
 <script setup>
 import axios from 'axios'
-import { inject, onMounted, ref, watch } from 'vue'
+import { inject, onMounted, ref } from 'vue'
 import SliderProduct from '@/components/SliderProduct.vue'
 import Loading from '@/components/Loading.vue'
 

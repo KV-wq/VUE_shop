@@ -98,7 +98,6 @@ const addToCarts = (item) => {
   const obj = {
     parentId: item.id
   }
-
   // Получаем текущую корзину из LocalStorage
   const storedCarts = JSON.parse(localStorage.getItem('carts')) || []
 
@@ -114,9 +113,9 @@ const addToCarts = (item) => {
       storedCarts.splice(index, 1) // Удаляем товар из корзины
       localStorage.setItem('carts', JSON.stringify(storedCarts)) // Сохраняем обновленную корзину
     }
-    item.cartId = null
   }
   fetchCart()
+  if (storedCarts.length == 0) carts.value = []
 }
 
 const addToFavourite = (item) => {
@@ -178,7 +177,7 @@ const fetchCart = () => {
     // Обновляем carts.value, чтобы содержать только товары, которые добавлены в корзину
     carts.value = items.value.filter((item) => item.isAdded)
   } catch (error) {
-    alert(error.message) // Обработка ошибок
+    alert(error.message)
   }
 }
 
