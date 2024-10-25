@@ -75,7 +75,7 @@ export default defineComponent({
 .carousel__slide {
   margin-left: 11px;
   @media (max-width: 700px) {
-    margin-left: 20px;
+    margin-left: 18px;
   }
   @media (min-width: 2200px) {
     margin-right: -13px;

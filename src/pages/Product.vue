@@ -35,7 +35,7 @@ onMounted(async () => {
 <template>
   <h1 class="text-3xl font-semibold underline underline-offset-4">{{ product.title }}</h1>
   <div class="w-full h-full grid grid-cols-2 mx-auto mt-5">
-    <div>
+    <div class="flex flex-col h-full items-center justify-center">
       <SliderProduct class="w-full" :image-url="product.imageUrl" />
     </div>
     <div class="flex flex-col justify-between">
