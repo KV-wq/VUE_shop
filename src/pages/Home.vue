@@ -42,7 +42,7 @@ const onSearchSelect = debounce((event) => {
 
 <template>
   <Slider />
-  <div class="flex justify-between items-center">
+  <div class="flex justify-between items-center max-[600px]:mt-4">
     <h2 class="text-3xl font-bold">Все кроссовки</h2>
 
     <div class="gap-5 flex items-center">

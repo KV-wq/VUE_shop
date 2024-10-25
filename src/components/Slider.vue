@@ -73,9 +73,6 @@ export default defineComponent({
 }
 
 .carousel__slide {
-  margin: 0px;
-  @media (max-width: 1500px) {
-    margin: 0;
-  }
+  margin-left: 11px;
 }
 </style>
