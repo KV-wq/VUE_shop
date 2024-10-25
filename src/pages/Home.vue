@@ -56,7 +56,7 @@ const onSearchSelect = debounce((event) => {
         <img src="/search.svg" alt="Search" class="absolute left-2 top-2" />
         <input
           @input="onSearchSelect"
-          class="border border-gray-300 rounded-md p-1 pl-7 pr-2 outline-none focus:border-gray-600 max-[390px]:w-[27vw]"
+          class="border border-gray-300 rounded-md p-1 pl-7 pr-2 outline-none focus:border-gray-600 zalupa"
           placeholder="Поиск.."
         />
       </div>
@@ -65,3 +65,10 @@ const onSearchSelect = debounce((event) => {
 
   <CardList :items="items" @add-to-carts="addToCarts" />
 </template>
+<style scoped>
+.zalupa {
+  @media (max-width: 700px) {
+    max-width: 130px !important;
+  }
+}
+</style>
