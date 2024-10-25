@@ -34,14 +34,14 @@ onMounted(async () => {
 
 <template>
   <h1 class="text-3xl font-semibold underline underline-offset-4">{{ product.title }}</h1>
-  <div class="w-full h-full grid grid-cols-2 mx-auto">
+  <div class="w-full h-full grid grid-cols-2 mx-auto mt-5">
     <div>
       <SliderProduct class="w-full" :image-url="product.imageUrl" />
     </div>
     <div class="flex flex-col justify-between">
       <div class="ml-5">
         <p class="font-bold text-xl mb-2">Описание:</p>
-        <p class="text-lg">
+        <p class="text-lg max-[600px]:text-sm">
           Визуал кроссовок Jordan Stay Loyal 3 пересекается с моделью AJ4, но все же имеет свой
           неповторимый дизайн 🔥. Пара создана из текстиля и лакированной кожи. За мягкость и
           пружистый шаг отвечает технология Nike Air.

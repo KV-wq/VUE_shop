@@ -1,5 +1,5 @@
 <template>
-  <Carousel :autoplay="6000" :wrap-around="true" :navigationEnabled="true">
+  <Carousel :autoplay="6000" :navigationEnabled="true">
     <Slide key="1">
       <div class="carousel__item">
         <img class="transition w-full bg-cover rounded-lg" :src="imageUrl" alt="Slide" />
@@ -54,7 +54,7 @@ export default defineComponent({
   font-size: 20px;
   border-radius: 20px;
 }
-.carousel__slide {
+/* .carousel__slide {
   margin-right: 7px;
-}
+} */
 </style>
