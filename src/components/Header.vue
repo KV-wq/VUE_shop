@@ -18,9 +18,9 @@ defineProps({
         <p class="text-slate-500">The best shoes in NSK</p>
       </div>
     </div>
-    <ul class="flex gap-12 items-center">
+    <ul class="flex gap-12 max-[900px]:gap-6 items-center">
       <li
-        class="flex gap-2 cursor-pointer text-slate-700 hover:text-slate-950 hover:scale-105 transition-all"
+        class="flex gap-2 cursor-pointer text-slate-700 hover:text-slate-950 hover:scale-105 transition-all max-[800px]:ml-3 text-center"
         @click="() => emit('handleDrawer')"
       >
         <img src="/cart.svg" alt="Cart" />

@@ -29,6 +29,9 @@ onUnmounted(() => {
 const items = ref([])
 const carts = ref([])
 
+const isLoading = ref(true)
+provide('isLoading', isLoading)
+
 // const addToCarts = async (item) => {
 //   const obj = {
 //     parentId: item.id
@@ -262,6 +265,7 @@ onMounted(async () => {
 
     fetchFavourites()
     fetchCart()
+    isLoading.value = false
   } catch (error) {
     alert(error.message)
   }

@@ -13,7 +13,7 @@ const orderId = inject('orderId')
 
 <template>
   <div class="fixed left-0 bottom-0 top-0 h-full w-full bg-black/70 z-10" @click="exit" />
-  <div class="fixed bg-white h-full sm:w-1/4 w-1/2 s z-20 right-0 top-0 p-7">
+  <div class="fixed bg-white h-full min-[1100px]:w-1/4 w-1/2 s z-20 right-0 top-0 p-7">
     <DrawerHead />
     <info2
       title="Заказ оформлен!"
