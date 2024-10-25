@@ -47,3 +47,10 @@ select:focus > option:checked {
 select:focus > option:hover {
   background: #00f888 !important;
 }
+*::-webkit-progress-value {
+  background: #00ff55;
+}
+
+*::-webkit-progress-bar {
+  background: #95ebd5;
+}

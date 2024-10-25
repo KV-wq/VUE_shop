@@ -9,7 +9,7 @@ const emit = defineEmits('addToCarts')
 const addToFavourite = inject('addToFavourite')
 </script>
 <template>
-  <div class="grid grid-cols-4 gap-5 mt-10" v-auto-animate>
+  <div class="grid grid-cols-4 gap-5 mt-10 max-[1000px]:grid-cols-2" v-auto-animate>
     <Card
       v-for="item in items"
       :key="item.id"

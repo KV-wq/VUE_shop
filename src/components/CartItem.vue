@@ -3,7 +3,8 @@ defineProps({
   img: String,
   title: String,
   price: Number,
-  onClickRemove: Function
+  onClickRemove: Function,
+  id: Number
 })
 </script>
 <template>
@@ -13,7 +14,9 @@ defineProps({
     <img class="w-20" :src="img" alt="Sneakers" />
 
     <div class="flex flex-col w-full">
-      <p>{{ title }}</p>
+      <router-link :to="'product?' + id"
+        ><p class="transition hover:scale-[1.03]">{{ title }}</p></router-link
+      >
 
       <div class="flex justify-between mt-2">
         <b>{{ price }} руб.</b>

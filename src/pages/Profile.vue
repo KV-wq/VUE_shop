@@ -1,16 +1,24 @@
 <script setup>
 import axios from 'axios'
-import { onMounted, ref } from 'vue'
+import { inject, onMounted, ref } from 'vue'
 
 const orders = ref([])
 
 onMounted(async () => {
-  const { data } = await axios.get('https://e5e2fa5636b51605.mokky.dev/orders')
-  orders.value = data.reverse()
+  try {
+    // Получаем данные о заказах из LocalStorage
+    const data = JSON.parse(localStorage.getItem('orders')) || [] // Преобразуем строку в массив
+    console.log(data) // Логируем полученные данные
+
+    // Обновляем orders.value, реверсируя массив
+    orders.value = data.reverse()
+  } catch (error) {
+    console.error('Ошибка при загрузке заказов:', error) // Логируем ошибку
+  }
 })
 </script>
 <template>
-  <h2 class="text-3xl font-bold">Мой профиль</h2>
+  <h2 class="text-3xl font-bold">Мои заказы</h2>
 
   <div
     v-for="order in orders"
@@ -19,9 +27,7 @@ onMounted(async () => {
   >
     <div class="flex justify-between">
       <div class="flex gap-2 items-center">
-        <h1 class="border border-slate-200 px-3 py-2 rounded-2xl max-w-28">
-          Заказ #{{ order.id }}
-        </h1>
+        <h1 class="border border-slate-200 px-3 py-2 rounded-2xl">Заказ #{{ order.orderId }}</h1>
         <h1 class="border border-orange-300 px-3 py-2 rounded-2xl max-w-52 text-base bg-[#fceede]">
           Статус: в обработке
         </h1>

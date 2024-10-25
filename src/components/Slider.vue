@@ -2,13 +2,17 @@
   <Carousel :autoplay="4000" :wrap-around="true">
     <Slide key="1">
       <div class="carousel__item">
-        <img class="h-64 transition w-full bg-cover rounded-lg" src="/slide-6.webp" alt="Slide" />
+        <img
+          class="h-64 max-[1200px]:h-[12rem] min-[2000px]:h-[24rem] transition w-full bg-cover rounded-lg"
+          src="/slide-6.webp"
+          alt="Slide"
+        />
       </div>
     </Slide>
     <Slide key="2"
       ><div class="carousel__item">
         <img
-          class="h-64 transition w-full bg-cover rounded-lg"
+          class="h-64 max-[1200px]:h-[12rem] min-[2000px]:h-[24rem] transition w-full bg-cover rounded-lg"
           src="/slide-2.png"
           alt="Slide"
         /></div
@@ -16,7 +20,7 @@
     <Slide key="3"
       ><div class="carousel__item">
         <img
-          class="h-64 transition w-full bg-cover rounded-lg"
+          class="h-64 max-[1200px]:h-[12rem] min-[2000px]:h-[24rem] transition w-full bg-cover rounded-lg"
           src="/slide-3.png"
           alt="Slide"
         /></div
@@ -25,7 +29,7 @@
     <Slide key="5"
       ><div class="carousel__item">
         <img
-          class="h-64 transition w-full bg-cover rounded-lg"
+          class="h-64 max-[1200px]:h-[12rem] min-[2000px]:h-[24rem] transition w-full bg-cover rounded-lg"
           src="/slide-5.jpg"
           alt="Slide"
         /></div
@@ -33,7 +37,7 @@
     <Slide key="6"
       ><div class="carousel__item">
         <img
-          class="h-64 transition w-full bg-cover rounded-lg"
+          class="h-64 max-[1200px]:h-[12rem] min-[2000px]:h-[24rem] transition w-full bg-cover rounded-lg"
           src="/slide-1.png"
           alt="Slide"
         /></div
@@ -69,6 +73,9 @@ export default defineComponent({
 }
 
 .carousel__slide {
-  margin: 5.5px;
+  margin: 0px;
+  @media (max-width: 1500px) {
+    margin: 0;
+  }
 }
 </style>

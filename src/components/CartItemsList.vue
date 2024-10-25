@@ -14,6 +14,7 @@ const remove = inject('addToCarts')
       :img="cart.imageUrl"
       :title="cart.title"
       :price="cart.price"
+      :id="cart.id"
       :onClickRemove="() => remove(cart)"
     />
   </div>

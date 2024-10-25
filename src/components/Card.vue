@@ -22,7 +22,11 @@ const props = defineProps({
       class="absolute top-8 left-8 cursor-pointer"
     />
     <img :src="img" alt="Sneakers" class="min-[1900px]:w-[27rem] min-[1900px]:max-h-[25rem]" />
-    <p class="mt-2 text-xs sm:text-lg">{{ title }}</p>
+    <router-link :to="'product?' + id"
+      ><p class="mt-2 text-xs sm:text-lg transition-all hover:scale-[1.02]">
+        {{ title }}
+      </p></router-link
+    >
     <div class="flex justify-between mt-5">
       <div class="flex flex-col">
         <span class="text-slate-500">Цена:</span>

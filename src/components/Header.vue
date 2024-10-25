@@ -39,7 +39,7 @@ defineProps({
           class="flex gap-2 cursor-pointer text-slate-700 hover:text-slate-950 hover:scale-105 transition-all"
         >
           <img src="/profile.svg" alt="Cart" />
-          <span class="font-medium">Заказы</span>
+          <span class="font-medium">Профиль</span>
         </li></router-link
       >
     </ul>
