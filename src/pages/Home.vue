@@ -75,7 +75,7 @@ const onSearchSelect = debounce((event) => {
 </template>
 <style scoped>
 .zalupa {
-  @media (max-width: 700px) {
+  @media (max-width: 800px) {
     max-width: 130px !important;
   }
 }

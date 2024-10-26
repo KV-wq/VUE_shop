@@ -12,7 +12,7 @@ const props = defineProps({
 </script>
 <template>
   <div
-    class="flex flex-col justify-between dark:text-black relative bg-[#ffffff] border border-slate-200 rounded-2xl p-8 transition hover:-translate-y-2 hover:shadow-xl"
+    class="flex flex-col justify-between dark:text-black relative bg-[#ffffff] border border-slate-200 rounded-2xl p-8 transition hover:-translate-y-2 hover:shadow-xl max-[900px]:hover:shadow-none max-[900px]:hover:-translate-y-0 max-[900px]:active:shadow-xl max-[900px]:active:-translate-y-2"
   >
     <img
       v-if="onClickFavourite"
