@@ -8,13 +8,17 @@ import Home from './pages/Home.vue'
 import Favorites from './pages/Favorites.vue'
 import Profile from './pages/Profile.vue'
 import Product from './pages/Product.vue'
+import NotFound from './pages/NotFound.vue'
+import OrderIsCreated from './pages/OrderIsCreated.vue'
 
 const app = createApp(App)
 const routes = [
   { path: '/', component: Home },
   { path: '/favorites', component: Favorites },
   { path: '/profile', component: Profile },
-  { path: '/product', component: Product }
+  { path: '/product', component: Product },
+  { path: '/order-created', component: OrderIsCreated },
+  { path: '/:catchAll(.*)', component: NotFound }
 ]
 
 const router = createRouter({

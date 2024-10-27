@@ -1,4 +1,7 @@
 <script setup>
+import { ref } from 'vue'
+import Loading from './Loading.vue'
+
 const props = defineProps({
   img: String,
   title: String,
@@ -9,6 +12,10 @@ const props = defineProps({
   id: Number,
   onClickFavourite: Function
 })
+const isLoading = ref(true)
+const handleImageLoad = () => {
+  isLoading.value = false
+}
 </script>
 <template>
   <div
@@ -22,7 +29,17 @@ const props = defineProps({
       class="absolute top-8 left-8 cursor-pointer"
     />
     <router-link :to="'product?' + id">
-      <img :src="img" alt="Sneakers" class="min-[1900px]:w-[27rem] min-[1900px]:max-h-[25rem]" />
+      <Loading
+        v-if="isLoading"
+        class="min-[1900px]:w-[27rem] min-[1900px]:max-h-[25rem] h-[10rem] bg-gray items-center"
+      />
+      <img
+        v-show="!isLoading"
+        :src="img"
+        alt="Sneakers"
+        class="min-[1900px]:w-[27rem] min-[1900px]:max-h-[25rem]"
+        @load="handleImageLoad"
+      />
 
       <p class="mt-2 text-xs sm:text-lg transition-all hover:scale-[1.02]">
         {{ title }}
@@ -43,4 +60,4 @@ const props = defineProps({
     </div>
   </div>
 </template>
-<style lang="scss"></style>
+<style scoped></style>

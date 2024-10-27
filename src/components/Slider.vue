@@ -78,7 +78,7 @@ export default defineComponent({
     margin-left: 0px;
   }
   @media (min-width: 2200px) {
-    margin-right: -13px;
+    margin-right: -10px;
   }
 }
 </style>
