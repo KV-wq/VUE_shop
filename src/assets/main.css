@@ -34,19 +34,7 @@ body {
 .scroll-button.show {
   transform: translateY(0);
 }
-select option {
-  margin: 40px;
-  background: #83fcb1;
-  color: hsl(0, 0%, 100%);
-  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
-  border: none;
-}
-select:focus > option:checked {
-  background: #00f888 !important;
-}
-select:focus > option:hover {
-  background: #00f888 !important;
-}
+
 *::-webkit-progress-value {
   background: #00ff55;
 }

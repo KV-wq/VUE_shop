@@ -4,18 +4,27 @@ import { inject, onMounted, ref } from 'vue'
 import SliderProduct from '@/components/SliderProduct.vue'
 import Loading from '@/components/Loading.vue'
 
+const favorites = JSON.parse(localStorage.getItem('favourites')) || []
+const carts = JSON.parse(localStorage.getItem('carts')) || []
+
 const productId = window.location.href.split('?')[1]
-const isAdded = ref(false)
-const isFavourite = ref(false)
+const isAdded = ref(carts.some((cart) => cart.id == productId))
+const isFavourite = ref(favorites.some((favorites) => favorites.id == productId))
 const product = ref({})
 const isLoading = inject('isLoading')
-
-//product.value = items.value.find((i) => i.id == productId)
 const addToCart = inject('addToCarts')
+
 const handleAddToCart = (a) => {
   addToCart(a)
   isAdded.value = !isAdded.value
 }
+
+setTimeout(() => {
+  window.scrollTo({
+    top: 50,
+    behavior: 'smooth'
+  })
+}, 500)
 
 const addFavourite = inject('addToFavourite')
 
@@ -28,6 +37,8 @@ onMounted(async () => {
   try {
     const { data } = await axios.get('https://e5e2fa5636b51605.mokky.dev/sneakers/' + productId)
     product.value = data
+    product.value.isAdded = isAdded.value
+    product.value.isFavourite = isFavourite.value
     isLoading.value = false
   } catch (e) {
     alert(e.message)

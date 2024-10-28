@@ -103,9 +103,9 @@ const addToCarts = (item) => {
 
   if (!item.isAdded) {
     item.isAdded = true
-    storedCarts.push(item) // Добавляем товар в корзину
+    storedCarts.push(item)
+    storedCarts.forEach((a) => (a.count = 1))
     localStorage.setItem('carts', JSON.stringify(storedCarts)) // Сохраняем корзину в LocalStorage
-    item.cartId = Date.now() // Генерируем уникальный идентификатор для примера
   } else {
     item.isAdded = false
     const index = storedCarts.findIndex((cartItem) => cartItem.id === item.id)
@@ -117,6 +117,23 @@ const addToCarts = (item) => {
   fetchCart()
   if (storedCarts.length == 0) carts.value = []
 }
+
+const cartCountUp = (item) => {
+  const index = carts.value.findIndex((cartItem) => cartItem.id === item.id)
+  if (index !== -1) {
+    carts.value[index].count += 1
+    localStorage.setItem('carts', JSON.stringify(carts.value)) // Сохраняем измененную корзину
+  }
+}
+provide('cartCountUp', cartCountUp)
+const cartCountDown = (item) => {
+  const index = carts.value.findIndex((cartItem) => cartItem.id === item.id)
+  if (index !== -1) {
+    carts.value[index].count -= 1
+    localStorage.setItem('carts', JSON.stringify(carts.value)) // Сохраняем измененную корзину
+  }
+}
+provide('cartCountDown', cartCountDown)
 
 const addToFavourite = (item) => {
   try {
@@ -150,7 +167,7 @@ const fetchFavourites = () => {
   try {
     // Получаем избранные товары из LocalStorage
     const favourites = JSON.parse(localStorage.getItem('favourites')) || []
-    console.log(favourites)
+
     // Обновляем items.value на основе избранных
     items.value = items.value.map((it) => {
       const favourite = favourites.find((fav) => fav.id === it.id)
@@ -175,7 +192,7 @@ const fetchCart = () => {
     })
 
     // Обновляем carts.value, чтобы содержать только товары, которые добавлены в корзину
-    carts.value = items.value.filter((item) => item.isAdded)
+    carts.value = JSON.parse(localStorage.getItem('carts'))
   } catch (error) {
     alert(error.message)
   }
@@ -277,7 +294,9 @@ function handleDrawer() {
 }
 provide('drawerOpen', handleDrawer)
 
-const totalPrice = computed(() => carts.value.reduce((acc, item) => acc + item.price, 0))
+const totalPrice = computed(() =>
+  carts.value.reduce((acc, item) => acc + item.price * item.count, 0)
+)
 provide('totalPrice', totalPrice)
 </script>
 

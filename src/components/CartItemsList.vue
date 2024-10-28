@@ -4,6 +4,9 @@ import CartItem from './CartItem.vue'
 
 const carts = inject('carts')
 const remove = inject('addToCarts')
+
+const cartCountUp = inject('cartCountUp')
+const cartCountDown = inject('cartCountDown')
 </script>
 
 <template>
@@ -16,6 +19,9 @@ const remove = inject('addToCarts')
       :price="cart.price"
       :id="cart.id"
       :onClickRemove="() => remove(cart)"
+      :count="cart.count"
+      :cartCountUp="() => cartCountUp(cart)"
+      :cartCountDown="() => cartCountDown(cart)"
     />
   </div>
 </template>
