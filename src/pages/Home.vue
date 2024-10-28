@@ -72,7 +72,7 @@ const onSearchSelect = debounce((event) => {
     </div>
     <CardList :items="items" @add-to-carts="addToCarts" />
     <footer
-      class="h-32 rounded-t-3xl shadow-2xl w-full absolute mt-20 bg-green-100 flex flex-col text-center items-center pt-4 text-slate-400"
+      class="h-32 rounded-t-3xl shadow-2xl w-full absolute mt-20 bg-green-100 flex flex-col text-center items-center pt-4 text-slate-300 select-none"
     >
       <p>Вахитов Константин Равильевич</p>
       <p>ИНН: 541500228607</p>
