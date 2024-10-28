@@ -3,7 +3,7 @@ import DrawerHead from './DrawerHead.vue'
 import CartItemsList from './CartItemsList.vue'
 import Info2 from './Info2.vue'
 import Info from './Info.vue'
-import { inject, ref } from 'vue'
+import { inject, provide, ref } from 'vue'
 import axios from 'axios'
 
 const exit = inject('drawerOpen')
@@ -25,6 +25,14 @@ const index = ref('')
 const adress = ref('')
 const deliveryMethod = ref('')
 
+const promo = ref('')
+const sale = ref(0)
+provide('sale', sale)
+
+const checkPromo = () => {
+  if (promo.value == 'HappyNY') sale.value = 10
+}
+
 const updateTotalPrice = () => {
   if (deliveryMethod.value == 'courier') {
     deliveryPrice.value = 500
@@ -37,28 +45,47 @@ const updateTotalPrice = () => {
   }
 }
 
+const apiKey = '7fe01f48-68de-4e2e-a870-b015a9c5a716' // Ваш API ключ
 const suggestions = ref([])
 
-const onInput = async () => {
+const fetchSuggestions = async () => {
   if (adress.value.length < 3) {
     suggestions.value = []
     return
   }
 
   try {
-    const response = await axios.get(
-      'https://suggest-maps.yandex.ru/v1/suggest?apikey=7fe01f48-68de-4e2e-a870-b015a9c5a716&text=' +
-        adress.value
-    )
+    const response = await axios.get('https://suggest-maps.yandex.ru/v1/suggest', {
+      params: {
+        apikey: apiKey,
+        text: adress.value,
+        lang: 'ru_RU', // Язык
+        results: 5 // Количество результатов
+      }
+    })
 
-    suggestions.value = response.data.suggestions.map((s) => s.value)
+    // Проверка наличия данных в ответе
+    if (response.data && response.data.results) {
+      suggestions.value = response.data.results.map((result) => ({
+        title: result.title,
+        subtitle: result.subtitle,
+        formatted_address: result.formatted_address,
+        distance: result.distance ? `${result.distance.value} м` : null
+      }))
+    } else {
+      console.error('Ответ от API не содержит ожидаемых данных:', response.data)
+      suggestions.value = []
+    }
   } catch (error) {
-    console.error('Ошибка при получении адресов:', error)
+    console.error('Ошибка при получении подсказок:', error)
+    suggestions.value = []
   }
 }
 
 const selectSuggestion = (suggestion) => {
-  adress.value = suggestion
+  if (suggestion.subtitle) adress.value = suggestion.subtitle.text + ', ' + suggestion.title.text
+  else adress.value = suggestion.title.text
+
   suggestions.value = []
 }
 </script>
@@ -161,7 +188,19 @@ const selectSuggestion = (suggestion) => {
           v-model="adress"
           class="mt-1 block w-full border border-gray-300 rounded-md p-2"
           placeholder="Введите адрес"
+          @input="fetchSuggestions"
         />
+        <ul v-if="suggestions.length" class="">
+          <li
+            class="border-b border-slate-500 p-0"
+            v-for="(suggestion, index) in suggestions"
+            :key="index"
+            @click="selectSuggestion(suggestion)"
+          >
+            <span v-if="suggestion.subtitle">{{ suggestion.subtitle.text }}, </span>
+            {{ suggestion.title.text }},
+          </li>
+        </ul>
       </div>
       <div v-if="deliveryMethod == 'pickup'" class="mb-4">
         <label class="block text-sm font-medium text-gray-700">Пункт самовывоза</label>
@@ -182,12 +221,24 @@ const selectSuggestion = (suggestion) => {
         </div>
         <label for="address" class="block text-sm font-medium text-gray-700">Адрес доставки</label>
         <input
+          @input="fetchSuggestions"
           required
           type="text"
           v-model="adress"
           class="mt-1 block w-full border border-gray-300 rounded-md p-2"
           placeholder="Введите адрес"
         />
+        <ul v-if="suggestions.length" class="">
+          <li
+            class="border-b border-slate-500 p-0"
+            v-for="(suggestion, index) in suggestions"
+            :key="index"
+            @click="selectSuggestion(suggestion)"
+          >
+            <span v-if="suggestion.subtitle">{{ suggestion.subtitle.text }}, </span>
+            {{ suggestion.title.text }},
+          </li>
+        </ul>
       </div>
       <div v-if="deliveryMethod == 'countryPlus'" class="mb-4">
         <div class="mb-4">
@@ -202,20 +253,22 @@ const selectSuggestion = (suggestion) => {
         </div>
         <label for="address" class="block text-sm font-medium text-gray-700">Адрес доставки</label>
         <input
+          @input="fetchSuggestions"
           required
           type="text"
           v-model="adress"
           class="mt-1 block w-full border border-gray-300 rounded-md p-2"
           placeholder="Введите адрес"
-          @input="onInput"
         />
-        <ul v-if="suggestions.length">
+        <ul v-if="suggestions.length" class="">
           <li
+            class="border-b border-slate-500 p-0"
             v-for="(suggestion, index) in suggestions"
             :key="index"
             @click="selectSuggestion(suggestion)"
           >
-            {{ suggestion }}
+            <span v-if="suggestion.subtitle">{{ suggestion.subtitle.text }}, </span>
+            {{ suggestion.title.text }},
           </li>
         </ul>
       </div>
@@ -230,16 +283,30 @@ const selectSuggestion = (suggestion) => {
     <div class="flex flex-col gap-4 absolute bottom-5 w-5/6 ml-1 bg-white z-10">
       <div>
         <div class="h-10 bg-white blur-lg"></div>
-        <div class="flex gap">
+        <div v-if="sale == 0" class="relative">
+          <input
+            v-model="promo"
+            type="text"
+            placeholder="Введите промокод (при наличии)"
+            class="text-slate-700 w-full border-b-2 border-dashed pb-2 hover:outline-none outline-none"
+          />
+          <img
+            @click="checkPromo"
+            src="/promo.svg"
+            alt="promocode"
+            class="absolute w-7 right-1 top-0 cursor-pointer active:scale-110 active:rotate-[20deg] transition-all"
+          />
+        </div>
+        <div class="flex gap" v-if="sale !== 0">
           <span>Скидка:</span>
           <div class="flex-1 border-b-2 border-dashed"></div>
-          <b class="text-slate-800"> {{ Math.round((totalPrice * 7) / 100) }} ₽</b>
+          <b class="text-slate-800"> {{ Math.round((totalPrice * sale) / 100) }} ₽</b>
         </div>
       </div>
       <div class="flex gap-1">
         <span>Итого:</span>
         <div class="flex-1 border-b-2 border-dashed"></div>
-        <b>{{ totalPrice - Math.round((totalPrice * 7) / 100) + deliveryPrice }} ₽</b>
+        <b>{{ totalPrice - Math.round((totalPrice * sale) / 100) + deliveryPrice }} ₽</b>
       </div>
       <button
         @click="() => (creating = false)"
@@ -284,16 +351,30 @@ const selectSuggestion = (suggestion) => {
     >
       <div>
         <div class="h-10 bg-white blur-lg"></div>
-        <div class="flex gap">
+        <div v-if="sale == 0" class="relative">
+          <input
+            v-model="promo"
+            type="text"
+            placeholder="Введите промокод (при наличии)"
+            class="text-slate-700 w-full border-b-2 border-dashed pb-2 hover:outline-none outline-none"
+          />
+          <img
+            @click="checkPromo"
+            src="/promo.svg"
+            alt="promocode"
+            class="absolute w-7 right-1 top-0 cursor-pointer active:scale-110 active:rotate-[20deg] transition-all"
+          />
+        </div>
+        <div class="flex gap" v-if="sale !== 0">
           <span>Скидка:</span>
           <div class="flex-1 border-b-2 border-dashed"></div>
-          <b class="text-slate-800"> {{ Math.round((totalPrice * 7) / 100) }} ₽</b>
+          <b class="text-slate-800"> {{ Math.round((totalPrice * sale) / 100) }} ₽</b>
         </div>
       </div>
       <div class="flex gap-1">
         <span>Итого:</span>
         <div class="flex-1 border-b-2 border-dashed"></div>
-        <b>{{ totalPrice - Math.round((totalPrice * 7) / 100) }} ₽</b>
+        <b>{{ totalPrice - Math.round((totalPrice * sale) / 100) }} ₽</b>
       </div>
       <button
         @click="() => (creating = true)"

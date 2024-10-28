@@ -76,8 +76,8 @@ const onSearchSelect = debounce((event) => {
     >
       <p>Вахитов Константин Равильевич</p>
       <p>ИНН: 541500228607</p>
-      <p>+79137333931</p>
-      <p>vue-shop@mail.ru</p>
+      <p class="text-slate-400 select-text">+7-993-953-39-31</p>
+      <p class="text-slate-400 select-text">vue.shop@mail.ru</p>
     </footer>
   </div>
 </template>

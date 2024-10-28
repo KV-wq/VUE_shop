@@ -294,9 +294,14 @@ function handleDrawer() {
 }
 provide('drawerOpen', handleDrawer)
 
-const totalPrice = computed(() =>
-  carts.value.reduce((acc, item) => acc + item.price * item.count, 0)
-)
+const totalPrice = computed(() => {
+  // Проверяем, что carts.value существует и является массивом
+  if (!carts.value || !Array.isArray(carts.value)) {
+    return 0 // Возвращаем 0, если carts.value не существует или не является массивом
+  }
+
+  return carts.value.reduce((acc, item) => acc + item.price * item.count, 0)
+})
 provide('totalPrice', totalPrice)
 </script>
 

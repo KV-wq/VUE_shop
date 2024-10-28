@@ -26,7 +26,7 @@ defineProps({
         @click="() => emit('handleDrawer')"
       >
         <img src="/cart.svg" alt="Cart" />
-        <b>{{ totalPrice - Math.round((totalPrice * 7) / 100) }} руб.</b>
+        <b>{{ totalPrice }} руб.</b>
       </li>
       <router-link to="favorites"
         ><li
