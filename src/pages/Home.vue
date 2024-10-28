@@ -48,7 +48,7 @@ const onSearchSelect = debounce((event) => {
 
 <template>
   <Loading v-if="isLoading" />
-  <div v-else>
+  <div v-else class="relative">
     <Slider class="rounded" />
     <div class="flex justify-between items-center mt-4">
       <h2 class="text-3xl font-bold">Все кроссовки</h2>
@@ -71,6 +71,14 @@ const onSearchSelect = debounce((event) => {
       </div>
     </div>
     <CardList :items="items" @add-to-carts="addToCarts" />
+    <footer
+      class="h-32 rounded-t-3xl shadow-2xl w-full absolute mt-20 bg-green-100 flex flex-col text-center items-center pt-4 text-slate-400"
+    >
+      <p>Вахитов Константин Равильевич</p>
+      <p>ИНН: 541500228607</p>
+      <p>+79137333931</p>
+      <p>vue-shop@mail.ru</p>
+    </footer>
   </div>
 </template>
 <style scoped>

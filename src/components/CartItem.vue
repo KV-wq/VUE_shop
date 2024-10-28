@@ -1,4 +1,7 @@
 <script setup>
+import { ref } from 'vue'
+import Loading from './Loading.vue'
+
 defineProps({
   img: String,
   title: String,
@@ -9,13 +12,19 @@ defineProps({
   cartCountUp: Function,
   cartCountDown: Function
 })
+
+const isLoading = ref(true)
+const handleImageLoad = () => {
+  isLoading.value = false
+}
 </script>
 <template>
   <div class="hover:-translate-y-1 hover:shadow-md transition-all mb-2 mt-1 rounded-xl">
     <div
       class="bg-white z-10 flex border border-slate-200 p-4 rounded-xl gap-4 items-center transition-all"
     >
-      <img class="w-20" :src="img" alt="Sneakers" />
+      <Loading v-if="isLoading" class="w-[150px]" />
+      <img class="w-20" :src="img" alt="Sneakers" v-show="!isLoading" @load="handleImageLoad" />
 
       <div class="flex flex-col w-full">
         <a :href="'product?' + id"
@@ -35,9 +44,11 @@ defineProps({
       </div>
     </div>
     <div
-      class="bg-white flex items-end justify-center gap-3 border-slate-200 border-b border-r border-l rounded-xl h-16 -mt-12 pb-2 z-0"
+      class="bg-white flex items-end justify-center gap-3 border-slate-200 border-b border-r border-l rounded-xl h-16 -mt-11 pb-2 z-0"
     >
-      <button class="px-1 bg-slate-100 text-slate-400 rounded" v-if="count == 1">▼</button>
+      <button class="px-1 bg-slate-100 text-slate-400 rounded cursor-default" v-if="count == 1">
+        ▼
+      </button>
       <button
         v-else
         @click="cartCountDown"
