@@ -4,6 +4,8 @@ import CartItemsList from './CartItemsList.vue'
 import Info2 from './Info2.vue'
 import Info from './Info.vue'
 import { inject, ref } from 'vue'
+import axios from 'axios'
+
 const exit = inject('drawerOpen')
 const totalPrice = inject('totalPrice')
 const emit = defineEmits('createOrder')
@@ -28,9 +30,36 @@ const updateTotalPrice = () => {
     deliveryPrice.value = 500
   } else if (deliveryMethod.value == 'country') {
     deliveryPrice.value = 350
+  } else if (deliveryMethod.value == 'countryPlus') {
+    deliveryPrice.value = 700
   } else {
     deliveryPrice.value = 0
   }
+}
+
+const suggestions = ref([])
+
+const onInput = async () => {
+  if (adress.value.length < 3) {
+    suggestions.value = []
+    return
+  }
+
+  try {
+    const response = await axios.get(
+      'https://suggest-maps.yandex.ru/v1/suggest?apikey=7fe01f48-68de-4e2e-a870-b015a9c5a716&text=' +
+        adress.value
+    )
+
+    suggestions.value = response.data.suggestions.map((s) => s.value)
+  } catch (error) {
+    console.error('Ошибка при получении адресов:', error)
+  }
+}
+
+const selectSuggestion = (suggestion) => {
+  adress.value = suggestion
+  suggestions.value = []
 }
 </script>
 
@@ -46,7 +75,7 @@ const updateTotalPrice = () => {
     class="fixed bg-white h-full min-[1100px]:w-1/4 w-1/2 s z-20 right-0 top-0 p-7"
     v-if="creating"
   >
-    <form v-if="!adressing">
+    <form v-if="!adressing" @submit.prevent="() => (adressing = true)">
       <h2 class="text-2xl font-bold text-start mb-3">Контактная информация</h2>
       <div class="mb-4">
         <label for="name" class="block text-sm font-medium text-gray-700">Имя</label>
@@ -97,7 +126,7 @@ const updateTotalPrice = () => {
         />
       </div>
       <button
-        @click="() => (adressing = true)"
+        type="submit"
         class="text-white bg-[#67ed86] w-full rounded-xl py-3 text-lg transition-all disabled:bg-slate-400 hover:bg-[#57e874] active:scale-95 disabled:pointer-events-none"
       >
         Далее
@@ -119,6 +148,7 @@ const updateTotalPrice = () => {
           <option value="pickup">Самовывоз</option>
           <option value="courier">Курьерская служба (+500₽)</option>
           <option value="country">Почта России (+350₽)</option>
+          <option value="countryPlus">Почта России Первый Класс (+700₽)</option>
         </select>
       </div>
       <div v-if="deliveryMethod == 'courier'" class="mb-4">
@@ -159,9 +189,38 @@ const updateTotalPrice = () => {
           placeholder="Введите адрес"
         />
       </div>
+      <div v-if="deliveryMethod == 'countryPlus'" class="mb-4">
+        <div class="mb-4">
+          <label for="index" class="block text-sm font-medium text-gray-700">Почтовый идекс </label>
+          <input
+            required
+            type="text"
+            v-model="index"
+            class="mt-1 block w-full border border-gray-300 rounded-md p-2"
+            placeholder="Введите адрес"
+          />
+        </div>
+        <label for="address" class="block text-sm font-medium text-gray-700">Адрес доставки</label>
+        <input
+          required
+          type="text"
+          v-model="adress"
+          class="mt-1 block w-full border border-gray-300 rounded-md p-2"
+          placeholder="Введите адрес"
+          @input="onInput"
+        />
+        <ul v-if="suggestions.length">
+          <li
+            v-for="(suggestion, index) in suggestions"
+            :key="index"
+            @click="selectSuggestion(suggestion)"
+          >
+            {{ suggestion }}
+          </li>
+        </ul>
+      </div>
 
       <button
-        @click="() => (adressing = true)"
         class="text-white bg-[#67ed86] w-full rounded-xl py-3 text-lg transition-all disabled:bg-slate-400 hover:bg-[#57e874] active:scale-95 disabled:pointer-events-none"
       >
         Перейти к оплате
