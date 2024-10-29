@@ -9,14 +9,14 @@ defineProps({
     <div class="flex items-center gap-4 logo">
       <router-link to="/"
         ><img
-          src="/sneakers.png"
+          src="/present.png"
           alt="Logo"
           class="w-[55px] cursor-pointer transition drop-shadow-md"
       /></router-link>
       <router-link to="/">
         <div>
-          <h1 class="text-xl font-bold">Sneakers Shop</h1>
-          <p class="text-slate-500">The best shoes in NSK</p>
+          <h1 class="text-xl font-bold">Gifts Shop</h1>
+          <p class="text-slate-500">Тепло в каждом подарке 🎄</p>
         </div></router-link
       >
     </div>

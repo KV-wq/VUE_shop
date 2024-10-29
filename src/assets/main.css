@@ -4,7 +4,7 @@
 
 body {
   font-family: 'Roboto', sans-serif;
-  background-color: #c9fcdd;
+  background-color: #c4ffdc;
 }
 * {
   scrollbar-gutter: stable;
@@ -34,7 +34,6 @@ body {
 .scroll-button.show {
   transform: translateY(0);
 }
-
 *::-webkit-progress-value {
   background: #00ff55;
 }

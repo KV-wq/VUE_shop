@@ -74,10 +74,10 @@ const onSearchSelect = debounce((event) => {
     <footer
       class="h-32 rounded-t-3xl shadow-2xl w-full absolute mt-20 bg-green-100 flex flex-col text-center items-center pt-4 text-slate-300 select-none"
     >
-      <p>Вахитов Константин Равильевич</p>
-      <p>ИНН: 541500228607</p>
-      <p class="text-slate-400 select-text">+7-993-953-39-31</p>
       <p class="text-slate-400 select-text">vue.shop@mail.ru</p>
+      <p class="">+7-913-733-39-31</p>
+      <p>ИНН: 541500228607</p>
+      <p>Вахитов Константин Равильевич</p>
     </footer>
   </div>
 </template>

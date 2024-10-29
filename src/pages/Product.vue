@@ -62,7 +62,7 @@ onMounted(async () => {
             неповторимый дизайн 🔥. Пара создана из текстиля и лакированной кожи. За мягкость и
             пружистый шаг отвечает технология Nike Air.
           </p>
-          <p class="font-bold text-xl mt-5">Размеры:</p>
+          <!-- <p class="font-bold text-xl mt-5">Размеры:</p>
           <div class="grid grid-cols-4 gap-4 mt-5 w-56 text-center">
             <div class="border-[2px] rounded-lg px-2 py-1">40</div>
             <div class="border-[2px] rounded-lg px-2 py-1 bg-green-300 border-green-500">41</div>
@@ -71,7 +71,7 @@ onMounted(async () => {
             <div class="border-[2px] rounded-lg px-2 py-1">44</div>
             <div class="border-[2px] rounded-lg px-2 py-1">45</div>
             <div class="border-[2px] rounded-lg px-2 py-1 bg-slate-400">46</div>
-          </div>
+          </div> -->
         </div>
         <div class="ml-5 mb-2">
           <p class="text-xl font-bold">Цена: {{ product.price }} ₽</p>
