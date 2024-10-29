@@ -16,7 +16,7 @@ defineProps({
       <router-link to="/">
         <div>
           <h1 class="text-xl font-bold">Gifts Shop</h1>
-          <p class="text-slate-500">Тепло в каждом подарке 🎄</p>
+          <p class="text-slate-500 max-[800px]:text-xs">Тепло в каждом подарке 🎄</p>
         </div></router-link
       >
     </div>

@@ -10,7 +10,7 @@ const cartCountDown = inject('cartCountDown')
 </script>
 
 <template>
-  <div class="max-h-[65vh] overflow-auto" v-auto-animate>
+  <div class="max-h-[65vh] overflow-auto">
     <CartItem
       v-for="cart in carts"
       :key="cart.id"
