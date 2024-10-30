@@ -248,7 +248,7 @@ provide('addToFavourite', addToFavourite)
 
 onMounted(async () => {
   try {
-    const { data } = await axios.get('https://e5e2fa5636b51605.mokky.dev/sneakers?sortBy=title')
+    const { data } = await axios.get('https://e5e2fa5636b51605.mokky.dev/gifts?sortBy=title')
 
     items.value = data.map((ob) => ({
       ...ob,
@@ -296,7 +296,11 @@ provide('totalPrice', totalPrice)
   <div
     class="mops w-4/5 max-[900px]:w-[100vw] max-[700px]:m-0 mx-auto bg-white rounded-2xl shadow-2xl mt-10 pb-1 mb-12 max-[900px]:mt-3 max-[900px]:mb-5"
   >
-    <Header @handle-drawer="handleDrawer" :totalPrice="totalPrice" />
+    <Header
+      @handle-drawer="handleDrawer"
+      :totalPrice="totalPrice"
+      class="hover:shadow-md max-[800px]:hover:shadow-none max-[800px]:active:shadow-md transition-all"
+    />
 
     <div class="p-10">
       <router-view></router-view>

@@ -4,7 +4,7 @@ import { ref, defineEmits } from 'vue'
 const emit = defineEmits()
 
 const snowflakeStyle = ref({
-  position: 'absolute',
+  position: 'fixed',
   top: '-10px',
   left: `${Math.random() * 98}vw`,
   opacity: Math.random(),

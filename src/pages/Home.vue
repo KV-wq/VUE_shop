@@ -23,7 +23,7 @@ const filters = reactive({
 watch(filters, async () => {
   try {
     const { data } = await axios.get(
-      'https://e5e2fa5636b51605.mokky.dev/sneakers?sortBy=' +
+      'https://e5e2fa5636b51605.mokky.dev/gifts?sortBy=' +
         filters.sortBy +
         '&title=*' +
         filters.searchQuery +

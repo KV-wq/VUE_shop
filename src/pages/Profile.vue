@@ -67,7 +67,7 @@ onMounted(async () => {
         <div
           class="flex p-3 rounded-xl gap-2 items-center hover:-translate-y-1 mt-1 transition-all hover:shadow-md"
         >
-          <img class="w-20" :src="item.imageUrl" alt="Sneakers" />
+          <img class="w-20" :src="item.imageUrl" alt="Gifts" />
 
           <div class="flex flex-col w-full">
             <p>{{ item.title }}</p>
