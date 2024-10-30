@@ -3,6 +3,7 @@ import { computed, onMounted, onUnmounted, provide, ref } from 'vue'
 import axios from 'axios'
 import Header from './components/Header.vue'
 import Drawer from './components/Drawer.vue'
+import Snowflake from './components/Snowflake.vue'
 
 const showButton = ref(false)
 
@@ -283,6 +284,7 @@ provide('totalPrice', totalPrice)
 
 <template>
   <Drawer v-if="drawerOpen" @createOrder="createOrder" />
+
   <button
     @click="scrollTop"
     class="scroll-button fixed bottom-10 right-10 bg-[#39c383] hover:bg-[#2c9665] text-white font-bold py-2 px-4 rounded-full w-14 h-14 transition-transform duration-500 ease-in-out z-10 transition-color"
@@ -290,8 +292,9 @@ provide('totalPrice', totalPrice)
   >
     <img src="/arrow-next.svg" class="mx-auto -rotate-90" alt="Up" />
   </button>
+  <Snowflake v-for="n in 200" :key="n" class="-z-10" />
   <div
-    class="mops w-4/5 max-[900px]:w-[100vw] max-[700px]:mx-0 mx-auto bg-white rounded-2xl shadow-2xl mt-10 pb-1 mb-12 max-[900px]:mt-3 max-[900px]:mb-5"
+    class="mops w-4/5 max-[900px]:w-[100vw] max-[700px]:m-0 mx-auto bg-white rounded-2xl shadow-2xl mt-10 pb-1 mb-12 max-[900px]:mt-3 max-[900px]:mb-5"
   >
     <Header @handle-drawer="handleDrawer" :totalPrice="totalPrice" />
 
