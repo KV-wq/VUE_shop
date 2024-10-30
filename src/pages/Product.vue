@@ -57,7 +57,7 @@ onMounted(async () => {
       <div class="flex flex-col justify-between">
         <div class="ml-5">
           <p class="font-bold text-xl mb-2">Описание:</p>
-          <p class="text-lg max-[600px]:text-sm">
+          <p class="text-lg max-[800px]:text-xs">
             {{ product.description }}
           </p>
         </div>

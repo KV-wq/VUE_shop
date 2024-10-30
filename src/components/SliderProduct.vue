@@ -5,7 +5,13 @@
   />
   <Carousel :autoplay="6000" :navigationEnabled="true" v-show="!isLoading">
     <Slide v-for="(image, i) in images" :key="i">
-      <img :src="image" alt="Slide" @load="handleImageLoad" class="w-[85%] rounded-xl" />
+      <img
+        :src="image"
+        alt="Slide"
+        @load="handleImageLoad"
+        class="w-[85%] rounded-xl"
+        @click="toggleSlide()"
+      />
     </Slide>
 
     <template #addons>
@@ -21,6 +27,10 @@ const handleImageLoad = () => {
 const props = defineProps({
   images: Object
 })
+const open = ref(false)
+const toggleSlide = () => {
+  open.value = !open.value
+}
 </script>
 <script>
 import { defineComponent, ref } from 'vue'
@@ -44,7 +54,7 @@ export default defineComponent({
   filter: drop-shadow(0px 15px 10px #1fe575);
   margin-left: 11px;
   @media (max-width: 700px) {
-    margin-left: 12px;
+    margin-left: 20px;
   }
   @media (min-width: 2200px) {
     margin-right: -10px;
