@@ -19,7 +19,7 @@ const handleImageLoad = () => {
 </script>
 <template>
   <div
-    class="flex flex-col justify-between dark:text-black relative bg-[#ffffff] border border-slate-300 rounded-2xl p-8 transition hover:-translate-y-2 hover:shadow-xl max-[900px]:hover:shadow-none max-[900px]:hover:-translate-y-0 max-[900px]:active:shadow-xl max-[900px]:active:-translate-y-2"
+    class="flex flex-col justify-end dark:text-black relative bg-[#ffffff] border border-slate-300 rounded-2xl p-8 transition hover:-translate-y-2 hover:shadow-xl max-[900px]:hover:shadow-none max-[900px]:hover:-translate-y-0 max-[900px]:active:shadow-xl max-[900px]:active:-translate-y-2"
   >
     <img
       v-if="onClickFavourite"
@@ -28,7 +28,7 @@ const handleImageLoad = () => {
       alt="Like"
       class="absolute top-8 left-8 cursor-pointer"
     />
-    <router-link :to="'product?' + id">
+    <router-link :to="'product?' + id" class="flex flex-col items-end justify-end">
       <Loading
         v-if="isLoading"
         class="min-[1900px]:w-[27rem] min-[1900px]:max-h-[25rem] h-[10rem] bg-gray items-center"
@@ -37,7 +37,7 @@ const handleImageLoad = () => {
         v-show="!isLoading"
         :src="img"
         alt="Sneakers"
-        class="min-[1900px]:w-[27rem] min-[1900px]:max-h-[25rem]"
+        class="min-[1900px]:w-[27rem] min-[1900px]:max-h-[25rem] photo"
         @load="handleImageLoad"
       />
 
@@ -60,4 +60,8 @@ const handleImageLoad = () => {
     </div>
   </div>
 </template>
-<style scoped></style>
+<style scoped>
+.photo {
+  filter: drop-shadow(-5px 7px 5px #06460267);
+}
+</style>
