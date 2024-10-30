@@ -62,6 +62,6 @@ const handleImageLoad = () => {
 </template>
 <style scoped>
 .photo {
-  filter: drop-shadow(-5px 7px 5px #06460267);
+  filter: drop-shadow(-5px 7px 5px #0000004b);
 }
 </style>
