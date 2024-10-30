@@ -50,14 +50,14 @@ onMounted(async () => {
   <Loading v-if="isLoading" />
   <div v-else>
     <h1 class="text-3xl font-semibold underline underline-offset-4">{{ product.title }}</h1>
-    <div class="w-full h-full grid grid-cols-2 mx-auto mt-5">
-      <div class="flex flex-col h-full items-center justify-center">
+    <div class="w-full h-full grid grid-cols-2 max-[800px]:grid-cols-5 mx-auto mt-5">
+      <div class="flex max-[800px]:col-span-3 flex-col h-full items-center justify-center">
         <SliderProduct :images="product.images" />
       </div>
-      <div class="flex flex-col justify-between">
+      <div class="flex max-[800px]:col-span-2 flex-col justify-between">
         <div class="ml-5">
           <p class="font-bold text-xl mb-2">Описание:</p>
-          <p class="text-lg max-[800px]:text-xs">
+          <p class="text-lg max-[800px]:text-sm">
             {{ product.description }}
           </p>
         </div>
