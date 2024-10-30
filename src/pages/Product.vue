@@ -21,10 +21,10 @@ const handleAddToCart = (a) => {
 
 setTimeout(() => {
   window.scrollTo({
-    top: 50,
+    top: 150,
     behavior: 'smooth'
   })
-}, 500)
+}, 700)
 
 const addFavourite = inject('addToFavourite')
 
@@ -52,12 +52,12 @@ onMounted(async () => {
     <h1 class="text-3xl font-semibold underline underline-offset-4">{{ product.title }}</h1>
     <div class="w-full h-full grid grid-cols-2 mx-auto mt-5">
       <div class="flex flex-col h-full items-center justify-center">
-        <SliderProduct class="w-full" :image-url="product.imageUrl" />
+        <SliderProduct :images="product.images" />
       </div>
       <div class="flex flex-col justify-between">
         <div class="ml-5">
           <p class="font-bold text-xl mb-2">Описание:</p>
-          <p class="text-sm max-[600px]:text-xs">
+          <p class="text-lg max-[600px]:text-sm">
             {{ product.description }}
           </p>
         </div>

@@ -4,31 +4,16 @@
     class="min-[1900px]:w-[27rem] min-[1900px]:max-h-[25rem] h-[10rem] bg-gray items-center"
   />
   <Carousel :autoplay="6000" :navigationEnabled="true" v-show="!isLoading">
-    <Slide key="1">
+    <Slide v-for="(image, i) in images" :key="i">
       <div class="carousel__item">
         <img
-          class="transition w-full bg-cover rounded-lg"
-          :src="imageUrl"
+          class="transition w-full bg-cover rounded-2xl"
+          :src="image"
           alt="Slide"
           @load="handleImageLoad"
         />
       </div>
     </Slide>
-
-    <Slide key="2"
-      ><div class="carousel__item">
-        <img class="transition w-full bg-cover rounded-lg" :src="imageUrl" alt="Slide" /></div
-    ></Slide>
-
-    <Slide key="3"
-      ><div class="carousel__item">
-        <img class="transition w-full bg-cover rounded-lg" :src="imageUrl" alt="Slide" /></div
-    ></Slide>
-
-    <Slide key="4"
-      ><div class="carousel__item">
-        <img class="transition w-full bg-cover rounded-lg" :src="imageUrl" alt="Slide" /></div
-    ></Slide>
 
     <template #addons>
       <Navigation />
@@ -42,7 +27,7 @@ const handleImageLoad = () => {
   isLoading.value = false
 }
 const props = defineProps({
-  imageUrl: String
+  images: Object
 })
 </script>
 <script>
@@ -64,9 +49,10 @@ export default defineComponent({
 
 <style scoped>
 .carousel__item {
-  width: 90%;
+  display: flex;
+  width: 80%;
   font-size: 20px;
-  border-radius: 20px;
+  border-radius: 50px;
 }
 /* .carousel__slide {
   margin-right: 7px;
