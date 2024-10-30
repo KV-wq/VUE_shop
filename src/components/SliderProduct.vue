@@ -52,9 +52,11 @@ export default defineComponent({
 <style scoped>
 .carousel__slide {
   filter: drop-shadow(0px 10px 10px #1dc5657d);
+
   margin-left: 11px;
-  @media (max-width: 700px) {
+  @media (max-width: 800px) {
     margin-left: 17.5px;
+    filter: none;
   }
   @media (min-width: 2200px) {
     margin-right: -10px;
