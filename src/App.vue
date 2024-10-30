@@ -209,17 +209,17 @@ provide('orderIsCreated', orderIsCreated)
 const orderId = ref(1)
 provide('orderId', orderId)
 
-const createOrder = async () => {
+const createOrder = async (Data) => {
   try {
     const { data } = await axios.post('https://e5e2fa5636b51605.mokky.dev/orders', {
       items: carts.value,
-      totalPrice: totalPrice.value,
-      orderId: Date.now()
+      orderId: Data.orderId,
+      orderData: Data
     })
     const orderData = {
       items: carts.value,
       totalPrice: totalPrice.value,
-      orderId: Date.now()
+      orderId: Data.orderId
     }
 
     // Получаем существующие заказы из LocalStorage
@@ -231,31 +231,7 @@ const createOrder = async () => {
     // Сохраняем обновленный массив заказов в LocalStorage
     localStorage.setItem('orders', JSON.stringify(existingOrders))
     orderId.value = data.id
-    axios.delete('https://e5e2fa5636b51605.mokky.dev/cart/1')
-    axios.delete('https://e5e2fa5636b51605.mokky.dev/cart/2')
-    axios.delete('https://e5e2fa5636b51605.mokky.dev/cart/3')
-    axios.delete('https://e5e2fa5636b51605.mokky.dev/cart/4')
-    axios.delete('https://e5e2fa5636b51605.mokky.dev/cart/5')
-    axios.delete('https://e5e2fa5636b51605.mokky.dev/cart/6')
-    axios.delete('https://e5e2fa5636b51605.mokky.dev/cart/7')
-    axios.delete('https://e5e2fa5636b51605.mokky.dev/cart/8')
-    axios.delete('https://e5e2fa5636b51605.mokky.dev/cart/9')
-    axios.delete('https://e5e2fa5636b51605.mokky.dev/cart/10')
-    axios.delete('https://e5e2fa5636b51605.mokky.dev/cart/11')
-    axios.delete('https://e5e2fa5636b51605.mokky.dev/cart/12')
-    axios.delete('https://e5e2fa5636b51605.mokky.dev/cart/13')
-    axios.delete('https://e5e2fa5636b51605.mokky.dev/cart/14')
-    axios.delete('https://e5e2fa5636b51605.mokky.dev/cart/15')
-    axios.delete('https://e5e2fa5636b51605.mokky.dev/cart/16')
-    axios.delete('https://e5e2fa5636b51605.mokky.dev/cart/17')
-    axios.delete('https://e5e2fa5636b51605.mokky.dev/cart/18')
-    axios.delete('https://e5e2fa5636b51605.mokky.dev/cart/19')
-    axios.delete('https://e5e2fa5636b51605.mokky.dev/cart/20')
-    axios.delete('https://e5e2fa5636b51605.mokky.dev/cart/21')
-    axios.delete('https://e5e2fa5636b51605.mokky.dev/cart/22')
-    axios.delete('https://e5e2fa5636b51605.mokky.dev/cart/23')
-    axios.delete('https://e5e2fa5636b51605.mokky.dev/cart/24')
-    axios.delete('https://e5e2fa5636b51605.mokky.dev/cart/25')
+
     carts.value.forEach((c) => (c.isAdded = false))
     carts.value = []
     orderIsCreated.value = true

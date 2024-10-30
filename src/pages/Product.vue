@@ -35,7 +35,7 @@ const addToFavourite = (a) => {
 
 onMounted(async () => {
   try {
-    const { data } = await axios.get('https://e5e2fa5636b51605.mokky.dev/sneakers/' + productId)
+    const { data } = await axios.get('https://e5e2fa5636b51605.mokky.dev/gifts/' + productId)
     product.value = data
     product.value.isAdded = isAdded.value
     product.value.isFavourite = isFavourite.value
@@ -57,21 +57,9 @@ onMounted(async () => {
       <div class="flex flex-col justify-between">
         <div class="ml-5">
           <p class="font-bold text-xl mb-2">Описание:</p>
-          <p class="text-lg max-[600px]:text-sm">
-            Визуал кроссовок Jordan Stay Loyal 3 пересекается с моделью AJ4, но все же имеет свой
-            неповторимый дизайн 🔥. Пара создана из текстиля и лакированной кожи. За мягкость и
-            пружистый шаг отвечает технология Nike Air.
+          <p class="text-sm max-[600px]:text-xs">
+            {{ product.description }}
           </p>
-          <!-- <p class="font-bold text-xl mt-5">Размеры:</p>
-          <div class="grid grid-cols-4 gap-4 mt-5 w-56 text-center">
-            <div class="border-[2px] rounded-lg px-2 py-1">40</div>
-            <div class="border-[2px] rounded-lg px-2 py-1 bg-green-300 border-green-500">41</div>
-            <div class="border-[2px] rounded-lg px-2 py-1">42</div>
-            <div class="border-[2px] rounded-lg px-2 py-1 bg-slate-400">43</div>
-            <div class="border-[2px] rounded-lg px-2 py-1">44</div>
-            <div class="border-[2px] rounded-lg px-2 py-1">45</div>
-            <div class="border-[2px] rounded-lg px-2 py-1 bg-slate-400">46</div>
-          </div> -->
         </div>
         <div class="ml-5 mb-2">
           <p class="text-xl font-bold">Цена: {{ product.price }} ₽</p>

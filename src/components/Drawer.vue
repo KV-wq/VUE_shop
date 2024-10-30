@@ -25,6 +25,24 @@ const index = ref('')
 const adress = ref('')
 const deliveryMethod = ref('')
 
+const submitOrder = () => {
+  const Data = {
+    name: name.value,
+    secondName: secondName.value,
+    email: email.value,
+    phone: phone.value,
+    index: index.value,
+    adress: adress.value,
+    deliveryMethod: deliveryMethod.value,
+    orderId: Date.now(),
+    price:
+      totalPrice.value - Math.round((totalPrice.value * sale.value) / 100) + deliveryPrice.value
+  }
+
+  // Эмитируем событие с данными заказа
+  emit('createOrder', Data)
+}
+
 const promo = ref('')
 const sale = ref(0)
 provide('sale', sale)
@@ -310,7 +328,6 @@ const selectSuggestion = (suggestion) => {
       </div>
       <button
         @click="() => (creating = false)"
-        :disabled="totalPrice === 0"
         type="submit"
         class="text-white bg-[#e8597b] w-full rounded-xl py-3 text-lg transition-all disabled:bg-slate-400 hover:bg-[#d24a58] active:scale-95 disabled:pointer-events-none"
       >
@@ -328,8 +345,9 @@ const selectSuggestion = (suggestion) => {
   >
     <DrawerHead />
     <info2
+      class="z-30"
       title="Заказ оформлен!"
-      :description="`Ваш заказ #${orderId} успешно получен и скоро будет передан в службу доставки`"
+      :description="`Ваш заказ #${Date.now()} успешно получен и скоро будет передан в службу доставки`"
       img="/order-success-icon.png"
       v-if="orderIsCreated"
     />
