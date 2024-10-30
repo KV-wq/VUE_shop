@@ -3,13 +3,13 @@
     v-if="isLoading"
     class="min-[1900px]:w-[27rem] min-[1900px]:max-h-[25rem] h-[10rem] bg-gray items-center"
   />
-  <Carousel :autoplay="6000" :navigationEnabled="true" v-show="!isLoading">
+  <Carousel :autoplay="6000" :navigationEnabled="true" v-show="!isLoading" :wrapAround="true">
     <Slide v-for="(image, i) in images" :key="i">
       <img
         :src="image"
         alt="Slide"
         @load="handleImageLoad"
-        class="w-[85%] rounded-xl"
+        class="w-[85%] max-[800px]:w-[100%] rounded-xl"
         @click="toggleSlide()"
       />
     </Slide>
@@ -51,7 +51,7 @@ export default defineComponent({
 
 <style scoped>
 .carousel__slide {
-  filter: drop-shadow(0px 15px 10px #1fe575);
+  filter: drop-shadow(0px 15px 10px #1eca69a5);
   margin-left: 11px;
   @media (max-width: 700px) {
     margin-left: 17.5px;

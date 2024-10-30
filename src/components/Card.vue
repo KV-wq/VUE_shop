@@ -26,7 +26,7 @@ const handleImageLoad = () => {
       @click="onClickFavourite"
       :src="!isFavourite ? '/like-1.svg' : '/like-2.svg'"
       alt="Like"
-      class="absolute top-8 left-8 cursor-pointer"
+      class="absolute top-8 left-8 cursor-pointer z-10"
     />
     <router-link :to="'product?' + id" class="flex flex-col items-end justify-end">
       <Loading
