@@ -55,7 +55,7 @@ export default defineComponent({
 
   margin-left: 11px;
   @media (max-width: 800px) {
-    margin-left: 17.5px;
+    margin-left: 0px; /*17.5px */
     filter: none;
   }
   @media (min-width: 2200px) {
