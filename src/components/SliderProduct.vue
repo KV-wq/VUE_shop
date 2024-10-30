@@ -5,18 +5,10 @@
   />
   <Carousel :autoplay="6000" :navigationEnabled="true" v-show="!isLoading">
     <Slide v-for="(image, i) in images" :key="i">
-      <div class="carousel__item">
-        <img
-          class="transition w-full bg-cover rounded-2xl"
-          :src="image"
-          alt="Slide"
-          @load="handleImageLoad"
-        />
-      </div>
+      <img :src="image" alt="Slide" @load="handleImageLoad" class="w-[85%] rounded-xl" />
     </Slide>
 
     <template #addons>
-      <Navigation />
       <Pagination />
     </template>
   </Carousel>
@@ -48,13 +40,14 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.carousel__item {
-  display: flex;
-  width: 80%;
-  font-size: 20px;
-  border-radius: 50px;
+.carousel__slide {
+  filter: drop-shadow(0px 15px 10px #1fe575);
+  margin-left: 11px;
+  @media (max-width: 700px) {
+    margin-left: 0px;
+  }
+  @media (min-width: 2200px) {
+    margin-right: -10px;
+  }
 }
-/* .carousel__slide {
-  margin-right: 7px;
-} */
 </style>
