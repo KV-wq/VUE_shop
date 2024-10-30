@@ -54,7 +54,7 @@ export default defineComponent({
   filter: drop-shadow(0px 15px 10px #1fe575);
   margin-left: 11px;
   @media (max-width: 700px) {
-    margin-left: 16px;
+    margin-left: 12px;
   }
   @media (min-width: 2200px) {
     margin-right: -10px;
