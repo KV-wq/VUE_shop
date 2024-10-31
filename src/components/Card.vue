@@ -28,7 +28,7 @@ const handleImageLoad = () => {
       alt="Like"
       class="absolute top-8 left-8 cursor-pointer z-[5]"
     />
-    <router-link :to="'product?' + id" class="flex flex-col items-end justify-end">
+    <router-link :to="'product?' + id" class="flex flex-col items-start justify-between">
       <Loading
         v-if="isLoading"
         class="min-[1900px]:w-[27rem] min-[1900px]:max-h-[25rem] h-[10rem] bg-gray items-center"
@@ -41,7 +41,7 @@ const handleImageLoad = () => {
         @load="handleImageLoad"
       />
 
-      <p class="mt-2 text-xs sm:text-lg transition-all hover:scale-[1.02]">
+      <p class="mt-2 text-xs sm:text-base min-[1900px]:text-xl transition-all hover:scale-[1.02]">
         {{ title }}
       </p>
     </router-link>

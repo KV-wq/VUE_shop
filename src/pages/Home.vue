@@ -49,7 +49,7 @@ const onSearchSelect = debounce((event) => {
 <template>
   <Loading v-if="isLoading" />
   <div v-else class="relative">
-    <Slider class="rounded" />
+    <!-- <Slider class="rounded" /> -->
     <div class="flex justify-between items-center mt-4">
       <h2 class="text-3xl font-bold">Все кроссовки</h2>
 
