@@ -51,7 +51,7 @@ const onSearchSelect = debounce((event) => {
   <div v-else class="relative">
     <!-- <Slider class="rounded" /> -->
     <div class="flex justify-between items-center mt-4">
-      <h2 class="text-3xl font-bold">Все кроссовки</h2>
+      <h2 class="text-3xl font-bold">Все подарки</h2>
 
       <div class="gap-5 flex items-center">
         <select class="py-2 px-3 border outline-none" @change="onChangeSelect">
@@ -75,7 +75,7 @@ const onSearchSelect = debounce((event) => {
       class="h-34 pb-2 rounded-t-3xl shadow-2xl w-full absolute mt-20 bg-green-800 flex flex-col text-center items-center pt-4 text-slate-900/25 select-none"
     >
       <a
-        class="text-slate-400 select-text flex gap-2 max-[800px]:text-lg"
+        class="text-slate-300 select-text flex gap-2 max-[800px]:text-lg"
         href="https://t.me/vue_shop"
         target="_blank"
         ><img src="/telegram.svg" alt="telegram" width="20" />t.me/vue_shop</a
@@ -83,7 +83,7 @@ const onSearchSelect = debounce((event) => {
       <a
         href="mailto:vue.shop@mail.ru"
         target="_blank"
-        class="text-slate-400 select-text flex gap-2 max-[800px]:text-lg"
+        class="text-slate-300 select-text flex gap-2 max-[800px]:text-lg"
       >
         <img src="/email.svg" alt="email" width="20" />vue.shop@mail.ru
       </a>
