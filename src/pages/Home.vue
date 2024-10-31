@@ -72,18 +72,22 @@ const onSearchSelect = debounce((event) => {
     </div>
     <CardList :items="items" @add-to-carts="addToCarts" />
     <footer
-      class="h-32 rounded-t-3xl shadow-2xl w-full absolute mt-20 bg-green-800 flex flex-col text-center items-center pt-4 text-slate-900/25 select-none"
+      class="h-34 pb-2 rounded-t-3xl shadow-2xl w-full absolute mt-20 bg-green-800 flex flex-col text-center items-center pt-4 text-slate-900/25 select-none"
     >
+      <a
+        class="text-slate-400 select-text flex gap-2 max-[800px]:text-lg"
+        href="https://t.me/vue_shop"
+        target="_blank"
+        ><img src="/telegram.svg" alt="telegram" width="20" />t.me/vue_shop</a
+      >
       <a
         href="mailto:vue.shop@mail.ru"
         target="_blank"
-        class="text-slate-400 select-text flex gap-2"
+        class="text-slate-400 select-text flex gap-2 max-[800px]:text-lg"
       >
         <img src="/email.svg" alt="email" width="20" />vue.shop@mail.ru
       </a>
-      <a class="text-slate-400 select-text flex gap-2" href="https://t.me/vue_shop" target="_blank"
-        ><img src="/telegram.svg" alt="telegram" width="20" />t.me/vue_shop</a
-      >
+
       <p class="">+7-913-733-39-31</p>
       <p>ИНН: 541500228607</p>
       <p>Вахитов Константин Равильевич</p>

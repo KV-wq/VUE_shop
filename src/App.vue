@@ -292,6 +292,13 @@ provide('totalPrice', totalPrice)
   >
     <img src="/arrow-next.svg" class="mx-auto -rotate-90" alt="Up" />
   </button>
+  <button
+    class="fixed bottom-5 left-5 rounded-full w-12 h-12 transition z-10 transition-color hover:shadow-xl active:scale-90"
+  >
+    <a href="https://t.me/vue_shop" target="_blank">
+      <img src="/telegram.svg" class="mx-auto" alt="Telegram" title="Аккаунт техподдержки"
+    /></a>
+  </button>
   <Snowflake v-for="n in 200" :key="n" class="-z-10" />
   <div
     class="mops w-4/5 max-[900px]:w-[100vw] max-[700px]:m-0 mx-auto bg-white rounded-2xl shadow-2xl mt-10 pb-1 mb-12 max-[900px]:mt-3 max-[900px]:mb-5"
