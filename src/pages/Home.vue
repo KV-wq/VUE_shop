@@ -17,7 +17,8 @@ onMounted(fetchFavourites)
 
 const filters = reactive({
   sortBy: '',
-  searchQuery: ''
+  searchQuery: '',
+  category: '*'
 })
 
 watch(filters, async () => {
@@ -25,6 +26,8 @@ watch(filters, async () => {
     const { data } = await axios.get(
       'https://e5e2fa5636b51605.mokky.dev/gifts?sortBy=' +
         filters.sortBy +
+        '&pol=' +
+        filters.category +
         '&title=*' +
         filters.searchQuery +
         '*'
@@ -49,8 +52,8 @@ const onSearchSelect = debounce((event) => {
 <template>
   <Loading v-if="isLoading" />
   <div v-else class="relative">
-    <!-- <Slider class="rounded" /> -->
-    <div class="flex justify-between items-center mt-4">
+    <!-- <Slider class="rounded mb-4" /> -->
+    <div class="flex justify-between items-center">
       <h2 class="text-3xl font-bold">Все подарки</h2>
 
       <div class="gap-5 flex items-center">
@@ -68,6 +71,35 @@ const onSearchSelect = debounce((event) => {
             placeholder="Поиск.."
           />
         </div>
+      </div>
+    </div>
+    <div class="flex justify-between items-center mt-4">
+      <h3 class="text-xl font-bold">Категории</h3>
+      <div class="flex gap-4 text-lg">
+        <button
+          :class="{ 'border-b-2 border-green-800': filters.category === '*' }"
+          @click="filters.category = '*'"
+        >
+          Все
+        </button>
+        <button
+          :class="{ 'border-b-2 border-green-800': filters.category === 'female' }"
+          @click="filters.category = 'female'"
+        >
+          Для неё
+        </button>
+        <button
+          :class="{ 'border-b-2 border-green-800': filters.category === 'male' }"
+          @click="filters.category = 'male'"
+        >
+          Для него
+        </button>
+        <button
+          :class="{ 'border-b-2 border-green-800': filters.category === 'child' }"
+          @click="filters.category = 'child'"
+        >
+          Детские
+        </button>
       </div>
     </div>
     <CardList :items="items" @add-to-carts="addToCarts" />

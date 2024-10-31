@@ -55,7 +55,7 @@ const handleImageLoad = () => {
         @click="onClickAdd"
         :src="!isAdded ? '/plus.svg' : '/checked.svg'"
         alt="Plus"
-        class="cursor-pointer transition"
+        class="cursor-pointer transition w-9"
       />
     </div>
   </div>
