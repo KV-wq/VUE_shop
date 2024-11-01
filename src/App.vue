@@ -219,7 +219,7 @@ const getHash = () => {
     items.value.forEach((it) => {
       if (it.id == item.id) {
         handleDrawer()
-        // Нашли товар в `items.value`
+
         // Проверяем, есть ли он уже в localStorage по ключу `carts`
         let carts = JSON.parse(localStorage.getItem('carts')) || [] // Получаем товары из localStorage или создаем пустой массив, если нет
         const existingItem = carts.find((i) => i.id === item.id)

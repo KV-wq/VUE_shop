@@ -4,44 +4,11 @@
       <div class="carousel__item">
         <img
           class="h-64 max-[1200px]:h-[12rem] min-[2000px]:h-[24rem] transition w-full bg-cover rounded-lg"
-          src="/slide-6.webp"
+          src="/slides/slide-1.jpeg"
           alt="Slide"
         />
       </div>
     </Slide>
-    <Slide key="2"
-      ><div class="carousel__item">
-        <img
-          class="h-64 max-[1200px]:h-[12rem] min-[2000px]:h-[24rem] transition w-full bg-cover rounded-lg"
-          src="/slide-2.png"
-          alt="Slide"
-        /></div
-    ></Slide>
-    <Slide key="3"
-      ><div class="carousel__item">
-        <img
-          class="h-64 max-[1200px]:h-[12rem] min-[2000px]:h-[24rem] transition w-full bg-cover rounded-lg"
-          src="/slide-3.png"
-          alt="Slide"
-        /></div
-    ></Slide>
-
-    <Slide key="5"
-      ><div class="carousel__item">
-        <img
-          class="h-64 max-[1200px]:h-[12rem] min-[2000px]:h-[24rem] transition w-full bg-cover rounded-lg"
-          src="/slide-5.jpg"
-          alt="Slide"
-        /></div
-    ></Slide>
-    <Slide key="6"
-      ><div class="carousel__item">
-        <img
-          class="h-64 max-[1200px]:h-[12rem] min-[2000px]:h-[24rem] transition w-full bg-cover rounded-lg"
-          src="/slide-1.png"
-          alt="Slide"
-        /></div
-    ></Slide>
 
     <template #addons>
       <Pagination />
