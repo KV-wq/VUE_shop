@@ -99,7 +99,7 @@ const addToCarts = (item) => {
   const obj = {
     parentId: item.id
   }
-  // Получаем текущую корзину из LocalStorage
+
   const storedCarts = JSON.parse(localStorage.getItem('carts')) || []
 
   if (!item.isAdded) {
@@ -199,6 +199,48 @@ const fetchCart = () => {
   }
 }
 
+const getHash = () => {
+  const hash = window.location.hash.substring(1)
+  const hashArray = hash.split(',')
+
+  const hashItems = hashArray.map((item) => {
+    const obj = {}
+    const keyValuePairs = item.split('&')
+
+    keyValuePairs.forEach((pair) => {
+      const [key, value] = pair.split('=')
+      obj[key] = value
+    })
+
+    return obj
+  })
+
+  hashItems.forEach((item) => {
+    items.value.forEach((it) => {
+      if (it.id == item.id) {
+        // Нашли товар в `items.value`
+        // Проверяем, есть ли он уже в localStorage по ключу `carts`
+        let carts = JSON.parse(localStorage.getItem('carts')) || [] // Получаем товары из localStorage или создаем пустой массив, если нет
+        const existingItem = carts.find((i) => i.id === item.id)
+
+        if (existingItem) {
+          // Если есть, обновляем количество
+          existingItem.count = parseInt(item.count)
+        } else {
+          // Если нет, добавляем новый товар
+          carts.push({ ...it, count: parseInt(item.count), isAdded: true })
+        }
+        const uniqueCarts = carts.filter(
+          (item, index, self) => index === self.findIndex((i) => i.id === item.id)
+        )
+        // Сохраняем обновленный массив в localStorage
+        localStorage.setItem('carts', JSON.stringify(uniqueCarts))
+      }
+    })
+  })
+  fetchCart()
+}
+
 provide('items', items)
 provide('carts', carts)
 provide('addToCarts', addToCarts)
@@ -258,6 +300,7 @@ onMounted(async () => {
 
     fetchFavourites()
     fetchCart()
+    getHash()
     isLoading.value = false
   } catch (error) {
     alert(error.message)
@@ -292,13 +335,7 @@ provide('totalPrice', totalPrice)
   >
     <img src="/arrow-next.svg" class="mx-auto -rotate-90" alt="Up" />
   </button>
-  <button
-    class="fixed bottom-5 left-5 rounded-full w-12 h-12 transition z-10 transition-color hover:shadow-xl active:scale-90"
-  >
-    <a href="https://t.me/vue_shop" target="_blank">
-      <img src="/telegram.svg" class="mx-auto" alt="Telegram" title="Аккаунт техподдержки"
-    /></a>
-  </button>
+
   <Snowflake v-for="n in 200" :key="n" class="-z-10" />
   <div
     class="mops w-4/5 max-[900px]:w-[100vw] max-[700px]:m-0 mx-auto bg-white rounded-2xl shadow-2xl mt-10 pb-1 mb-12 max-[900px]:mt-3 max-[900px]:mb-5"

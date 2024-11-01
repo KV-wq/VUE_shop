@@ -1,7 +1,7 @@
 <script setup>
 import CardList from '@/components/CardList.vue'
 import Loading from '@/components/Loading.vue'
-import { inject, onMounted, ref } from 'vue'
+import { inject } from 'vue'
 const isLoading = inject('isLoading')
 
 const favorites = JSON.parse(localStorage.getItem('favourites')) || []

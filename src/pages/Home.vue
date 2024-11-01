@@ -1,6 +1,6 @@
 <script setup>
 import axios from 'axios'
-import { inject, onMounted, reactive, watch } from 'vue'
+import { inject, onMounted, reactive, ref, watch } from 'vue'
 import CardList from '../components/CardList.vue'
 import Slider from '@/components/Slider.vue'
 import debounce from 'lodash.debounce'
@@ -32,12 +32,27 @@ watch(filters, async () => {
         filters.searchQuery +
         '*'
     )
-    fetchFavourites()
-    fetchCart()
+
     items.value = data
     isLoading.value = false
+    fetchFavourites()
+    fetchCart()
   } catch (error) {
     alert(error.message)
+  }
+})
+
+const categoryName = ref('Все подарки')
+
+watch(filters, () => {
+  if (filters.category === '*') {
+    categoryName.value = 'Все подарки'
+  } else if (filters.category === 'female') {
+    categoryName.value = 'Подарки для неё'
+  } else if (filters.category === 'male') {
+    categoryName.value = 'Подарки для него'
+  } else if (filters.category === 'child') {
+    categoryName.value = 'Подарки для детей '
   }
 })
 
@@ -50,11 +65,18 @@ const onSearchSelect = debounce((event) => {
 </script>
 
 <template>
+  <button
+    class="fixed bottom-5 left-5 rounded-full w-12 h-12 transition z-10 transition-color hover:shadow-xl active:scale-90"
+  >
+    <a href="https://t.me/vue_shop" target="_blank">
+      <img src="/telegram.svg" class="mx-auto" alt="Telegram" title="Аккаунт техподдержки"
+    /></a>
+  </button>
   <Loading v-if="isLoading" />
   <div v-else class="relative">
     <!-- <Slider class="rounded mb-4" /> -->
     <div class="flex justify-between items-center">
-      <h2 class="text-3xl font-bold">Все подарки</h2>
+      <h2 class="text-3xl font-bold">{{ categoryName }}</h2>
 
       <div class="gap-5 flex items-center">
         <select class="py-2 px-3 border outline-none" @change="onChangeSelect">
@@ -77,25 +99,25 @@ const onSearchSelect = debounce((event) => {
       <h3 class="text-xl font-bold">Категории</h3>
       <div class="flex gap-4 text-lg">
         <button
-          :class="{ 'border-b-2 border-green-800': filters.category === '*' }"
+          :class="{ 'border-b-2 border-green-600 scale-105': filters.category === '*' }"
           @click="filters.category = '*'"
         >
           Все
         </button>
         <button
-          :class="{ 'border-b-2 border-green-800': filters.category === 'female' }"
+          :class="{ 'border-b-2 border-green-600 scale-105': filters.category === 'female' }"
           @click="filters.category = 'female'"
         >
           Для неё
         </button>
         <button
-          :class="{ 'border-b-2 border-green-800': filters.category === 'male' }"
+          :class="{ 'border-b-2 border-green-600 scale-105': filters.category === 'male' }"
           @click="filters.category = 'male'"
         >
           Для него
         </button>
         <button
-          :class="{ 'border-b-2 border-green-800': filters.category === 'child' }"
+          :class="{ 'border-b-2 border-green-600 scale-105': filters.category === 'child' }"
           @click="filters.category = 'child'"
         >
           Детские
