@@ -5,6 +5,7 @@ import CardList from '../components/CardList.vue'
 import Slider from '@/components/Slider.vue'
 import debounce from 'lodash.debounce'
 import Loading from '@/components/Loading.vue'
+import Oferta from '@/components/Oferta.vue'
 
 const addToCarts = inject('addToCarts')
 const items = inject('items')
@@ -125,6 +126,7 @@ const onSearchSelect = debounce((event) => {
       </div>
     </div>
     <CardList :items="items" @add-to-carts="addToCarts" />
+
     <footer
       class="h-34 pb-2 rounded-t-3xl shadow-2xl w-full absolute mt-20 bg-green-800 flex flex-col text-center items-center pt-4 text-slate-900/25 select-none"
     >
@@ -141,8 +143,10 @@ const onSearchSelect = debounce((event) => {
       >
         <img src="/email.svg" alt="email" width="20" />vue.shop@mail.ru
       </a>
-
-      <p class="">+7-913-733-39-31</p>
+      <div class="text-slate-400 text-wrap">
+        <Oferta />
+      </div>
+      <p>+7-993-395-39-31</p>
       <p>ИНН: 541500228607</p>
       <p>Вахитов Константин Равильевич</p>
     </footer>
