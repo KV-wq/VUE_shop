@@ -143,12 +143,12 @@ const onSearchSelect = debounce((event) => {
       >
         <img src="/email.svg" alt="email" width="20" />vue.shop@mail.ru
       </a>
-      <div class="text-slate-400 text-wrap">
+      <!-- <div class="text-slate-400 text-wrap">
         <Oferta />
       </div>
       <p>+7-993-395-39-31</p>
       <p>ИНН: 541500228607</p>
-      <p>Вахитов Константин Равильевич</p>
+      <p>Вахитов Константин Равильевич</p> -->
     </footer>
   </div>
 </template>

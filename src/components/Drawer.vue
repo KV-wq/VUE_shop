@@ -27,6 +27,7 @@ const deliveryMethod = ref('')
 
 const submitOrder = () => {
   const Data = {
+    promo: promo.value,
     name: name.value,
     secondName: secondName.value,
     email: email.value,
@@ -177,7 +178,7 @@ const selectSuggestion = (suggestion) => {
         Далее
       </button>
     </form>
-    <form v-else-if="adressing">
+    <form v-else-if="adressing" @submit.prevent="submitOrder">
       <h2 class="text-2xl font-bold text-start mb-3">Доставка</h2>
       <div class="mb-4">
         <label for="delivery-method" class="block text-sm font-medium text-gray-700"
@@ -292,9 +293,10 @@ const selectSuggestion = (suggestion) => {
       </div>
 
       <button
+        type="submit"
         class="text-white bg-[#67ed86] w-full rounded-xl py-3 text-lg transition-all disabled:bg-slate-400 hover:bg-[#57e874] active:scale-95 disabled:pointer-events-none"
       >
-        Перейти к оплате
+        Создать заказ
       </button>
     </form>
 

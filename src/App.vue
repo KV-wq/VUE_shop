@@ -254,37 +254,60 @@ const orderId = ref(1)
 provide('orderId', orderId)
 
 const createOrder = async (Data) => {
-  try {
-    const { data } = await axios.post('https://e5e2fa5636b51605.mokky.dev/orders', {
-      items: carts.value,
-      orderId: Data.orderId,
-      orderData: Data
-    })
-    const orderData = {
-      items: carts.value,
-      totalPrice: totalPrice.value,
-      orderId: Data.orderId
-    }
+  // try {
+  //   const { data } = await axios.post('https://e5e2fa5636b51605.mokky.dev/orders', {
+  //     items: carts.value,
+  //     orderId: Data.orderId,
+  //     orderData: Data
+  //   })
+  //   const orderData = {
+  //     items: carts.value,
+  //     totalPrice: totalPrice.value,
+  //     orderId: Data.orderId
+  //   }
 
-    // Получаем существующие заказы из LocalStorage
-    const existingOrders = JSON.parse(localStorage.getItem('orders')) || []
+  //   // Получаем существующие заказы из LocalStorage
+  //   const existingOrders = JSON.parse(localStorage.getItem('orders')) || []
 
-    // Добавляем новый заказ в массив существующих заказов
-    existingOrders.push(orderData)
+  //   // Добавляем новый заказ в массив существующих заказов
+  //   existingOrders.push(orderData)
 
-    // Сохраняем обновленный массив заказов в LocalStorage
-    localStorage.setItem('orders', JSON.stringify(existingOrders))
-    orderId.value = data.id
+  //   // Сохраняем обновленный массив заказов в LocalStorage
+  //   localStorage.setItem('orders', JSON.stringify(existingOrders))
+  //   orderId.value = data.id
 
-    carts.value.forEach((c) => (c.isAdded = false))
-    carts.value = []
-    orderIsCreated.value = true
-    localStorage.removeItem('carts')
-    return data
-  } catch (error) {
-    orderIsCreated.value = false
-    alert(error.message)
-  }
+  //   carts.value.forEach((c) => (c.isAdded = false))
+  //   carts.value = []
+  //   orderIsCreated.value = true
+  //   localStorage.removeItem('carts')
+  let message = `Заказ №${Data.orderId}\n\n`
+  message += `Имя: ${Data.name} ${Data.secondName}\n`
+  message += `Телефон: ${Data.phone}\n`
+  message += `Email: ${Data.email}\n\n`
+  message += `Способ доставки: ${Data.deliveryMethod}\n\n`
+
+  if (Data.promo.length > 0) message += `Промокод: ${Data.promo}\n\n`
+
+  if (Data.adress.length > 0) message += `Адрес доставки: ${Data.adress}\n\n`
+  if (Data.index.length > 0) message += `Почтовый индекс: ${Data.index}\n\n`
+
+  message += `Товары:\n`
+
+  // Проходимся по списку товаров
+  carts.value.forEach((item) => {
+    message += `- ${item.title} (${item.count} шт.)\n`
+  })
+
+  // Убираем лишние пробелы в конце
+
+  message = message.replace(/\n/g, '%0A')
+
+  window.location.href = 'https://t.me/vue_shop?text=' + message
+  //   return data
+  // } catch (error) {
+  //   orderIsCreated.value = false
+  //   alert(error.message)
+  // }
 }
 
 provide('addToFavourite', addToFavourite)
