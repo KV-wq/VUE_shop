@@ -49,7 +49,7 @@ const sale = ref(0)
 provide('sale', sale)
 
 const checkPromo = () => {
-  if (promo.value == 'chillyWind') sale.value = 10
+  if (promo.value == 'goodGift') sale.value = 10
 }
 
 const updateTotalPrice = () => {
