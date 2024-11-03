@@ -70,7 +70,7 @@ onMounted(async () => {
           <img class="w-20" :src="item.imageUrl" alt="Gifts" />
 
           <div class="flex flex-col w-full">
-            <p>{{ item.title }}</p>
+            <p>{{ item.title }} ({{ item.count }} шт.)</p>
 
             <div class="flex justify-between mt-2">
               <b>{{ item.price }} руб.</b>

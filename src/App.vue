@@ -255,25 +255,25 @@ provide('orderId', orderId)
 
 const createOrder = async (Data) => {
   // try {
-  //   const { data } = await axios.post('https://e5e2fa5636b51605.mokky.dev/orders', {
-  //     items: carts.value,
-  //     orderId: Data.orderId,
-  //     orderData: Data
-  //   })
-  //   const orderData = {
-  //     items: carts.value,
-  //     totalPrice: totalPrice.value,
-  //     orderId: Data.orderId
-  //   }
+  const { data } = await axios.post('https://e5e2fa5636b51605.mokky.dev/orders', {
+    items: carts.value,
+    orderId: Data.orderId,
+    orderData: Data
+  })
+  const orderData = {
+    items: carts.value,
+    totalPrice: totalPrice.value,
+    orderId: Data.orderId
+  }
 
   //   // Получаем существующие заказы из LocalStorage
-  //   const existingOrders = JSON.parse(localStorage.getItem('orders')) || []
+  const existingOrders = JSON.parse(localStorage.getItem('orders')) || []
 
   //   // Добавляем новый заказ в массив существующих заказов
-  //   existingOrders.push(orderData)
+  existingOrders.push(orderData)
 
   //   // Сохраняем обновленный массив заказов в LocalStorage
-  //   localStorage.setItem('orders', JSON.stringify(existingOrders))
+  localStorage.setItem('orders', JSON.stringify(existingOrders))
   //   orderId.value = data.id
 
   //   carts.value.forEach((c) => (c.isAdded = false))
