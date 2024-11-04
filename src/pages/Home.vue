@@ -69,8 +69,8 @@ const onSearchSelect = debounce((event) => {
   <button
     class="fixed bottom-5 left-5 rounded-full w-12 h-12 transition z-10 transition-color hover:shadow-xl active:scale-90"
   >
-    <a href="https://t.me/vue_shop" target="_blank">
-      <img src="/telegram.svg" class="mx-auto" alt="Telegram" title="Аккаунт техподдержки"
+    <a href="https://t.me/gift_shop_new_year" target="_blank">
+      <img src="/telegram.svg" class="mx-auto" alt="Telegram" title="Наш телеграм канал"
     /></a>
   </button>
   <Loading v-if="isLoading" />
