@@ -10,6 +10,7 @@ import Profile from './pages/Profile.vue'
 import Product from './pages/Product.vue'
 import NotFound from './pages/NotFound.vue'
 import OrderIsCreated from './pages/OrderIsCreated.vue'
+import Admin from './pages/Admin.vue'
 
 const app = createApp(App)
 const routes = [
@@ -18,7 +19,8 @@ const routes = [
   { path: '/profile', component: Profile },
   { path: '/product', component: Product },
   { path: '/order-created', component: OrderIsCreated },
-  { path: '/:catchAll(.*)', component: NotFound }
+  { path: '/:catchAll(.*)', component: NotFound },
+  { path: '/admin', component: Admin }
 ]
 
 const router = createRouter({
