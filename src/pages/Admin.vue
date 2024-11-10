@@ -44,11 +44,29 @@ const createProduct = async () => {
 
   Id.value = Id.value + 1
 }
+
+const passwordOk = ref(false)
+const password = ref('')
+const isAdmin = localStorage.getItem('isAdmin')
+if (isAdmin) passwordOk.value = true
+watch(password, () => {
+  if (password.value == 'bigBalls') {
+    passwordOk.value = true
+    localStorage.setItem('isAdmin', true)
+  }
+})
 </script>
 
 <template>
   <h1 class="border-b-2 p-2 text-slate-800 border-green-500 text-3xl">Добавить товар</h1>
-  <form @submit.prevent="createProduct" class="grid grid-cols-2">
+  <input
+    v-if="!passwordOk"
+    type="text"
+    v-model="password"
+    placeholder="Пароль"
+    class="mt-1 block w-1/3 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm"
+  />
+  <form @submit.prevent="createProduct" class="grid grid-cols-2" v-show="passwordOk">
     <div>
       <input
         required
