@@ -45,10 +45,13 @@ const handleImageLoad = () => {
         {{ title }}
       </p>
     </router-link>
-    <div class="flex justify-between mt-5">
+    <div class="flex justify-between items-center mt-3">
       <div class="flex flex-col">
         <span class="text-slate-500">Цена:</span>
-        <b class="text-xs sm:text-lg">{{ price }} руб.</b>
+        <span class="text-sm line-through text-red-700 decoration-slice"
+          >{{ price + (price * 10) / 100 }} руб.</span
+        >
+        <b class="text-base sm:text-lg">{{ price }} руб.</b>
       </div>
       <img
         v-if="onClickAdd"
