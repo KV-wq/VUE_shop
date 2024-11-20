@@ -314,7 +314,7 @@ provide('addToFavourite', addToFavourite)
 
 onMounted(async () => {
   try {
-    const { data } = await axios.get('https://e5e2fa5636b51605.mokky.dev/gifts?sortBy=title')
+    const { data } = await axios.get('https://e5e2fa5636b51605.mokky.dev/gifts')
 
     items.value = data.map((ob) => ({
       ...ob,
